@@ -1,0 +1,275 @@
+@font-face {
+  font-family: 'ghanachoco';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ghanachoco.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NEXON Lv2 Gothic';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.root {
+  --black: #181818;
+  --white: #fafafa;
+  --green: #58dd94;
+  --black: #242424;
+  --orange: #fd7e14;
+  --pink: #d63384;
+  --blue: #0d6efd;
+  --yellow: #ffc107;
+  --light: #f8f9fa;
+  --dark: #dee2e6;
+  --teal: #20c997;
+  --cyan: #0dcaf0;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --red: #dc3545;
+  --lightgreen: #5cb85c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul,
+li {
+  list-style: none;
+}
+
+body {
+  /* font-family: 'Pretendard-Regular'; */
+  font-family: 'NEXON Lv2 Gothic';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  height: 100vh;
+}
+
+main {
+  min-width: 430px;
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 1rem;
+}
+
+main h1 {
+  text-align: center;
+  font-family: 'ghanachoco';
+  margin: 2rem 0;
+}
+
+/*input*/
+
+#Input {
+  width: 100%;
+  height: 700px;
+
+  padding: 2rem 3rem;
+}
+
+.input_button form {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input_button form input {
+  width: 100%;
+  height: 2.4rem;
+  padding: 0.3rem 0.3rem 0.3rem 0.7rem;
+}
+
+.input_button form input::placeholder {
+  font-family: 'NEXON Lv2 Gothic';
+  font-weight: 800;
+  color: #181818;
+}
+
+.input_button form input:focus {
+  outline: none;
+}
+
+.input_button form input:focus::placeholder {
+  color: transparent;
+}
+
+.input_button form button {
+  width: 2.4rem;
+  height: 2.4rem;
+  font-family: 'NEXON Lv2 Gothic';
+  font-weight: 800;
+}
+
+.input_button form button,
+.input_button form input {
+  border: none;
+  border-radius: 0.3rem;
+  background-color: #f8f9fa;
+  opacity: 0.5;
+}
+
+.all_delete {
+  display: none;
+  justify-content: flex-end;
+  margin-top: 2rem;
+
+  button {
+    border: none;
+    background-color: transparent;
+    font-weight: 800;
+    color: #fafafad7;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+/*todo list*/
+.todo_li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2rem;
+  background-color: #fafafa6e;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+}
+
+#Todo_list {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+#Todo_list::-webkit-scrollbar {
+  display: none;
+}
+
+#Todo_list > div > ul > li {
+  margin: 1rem 0;
+}
+
+.todo_text {
+  font-size: 14px;
+}
+
+.edit_input {
+  width: 90%;
+  border: none;
+  border-radius: 0.3rem;
+  background-color: #f8f9fa;
+  font-family: 'NEXON Lv2 Gothic';
+  font-size: 16px;
+}
+
+.edit_input:focus {
+  outline: none;
+  height: 30px;
+}
+
+.icons {
+  text-align: center;
+}
+
+.icons span:nth-child(2) {
+  margin-left: 0.5rem;
+}
+.check_icon,
+.delete_icon {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#State {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 200px;
+  margin-bottom: 2rem;
+
+  div {
+    margin: 0 5px;
+    text-align: center;
+    span {
+      margin: 0 5px;
+      text-align: center;
+      font-weight: 800;
+    }
+  }
+}
+
+.window_size_alert {
+  display: none;
+}
+
+@media screen and (min-width: 1080px) {
+  body {
+    background-position: 100% 50%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    background-position: 0% 50%;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  body {
+    background-position: 100% 50%;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  body {
+    background-position: 0% 50%;
+  }
+}
+
+@media screen and (max-width: 380px) {
+}
+
+@media screen and (min-width: 0px) and (max-width: 380px) {
+  body {
+    background-color: #dc3545;
+    background-size: 0;
+    color: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+  }
+
+  main {
+    display: none;
+  }
+
+  .window_size_alert {
+    display: block;
+
+    h1 {
+      line-height: 2.4rem;
+      font-size: 2vh;
+      text-wrap: warp;
+    }
+  }
+}

@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fastly.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
+
+body {
+  font-family: 'Galmuri9';
+  color: #fafafa;
+  background-color: #18181b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
+}
+
+#title {
+  text-align: center;
+}
+
+@keyframes subtitle {
+  to {
+    text-shadow: 0.1em 0.1em 0 currentColor;
+  }
+}
+
+@keyframes gelatine {
+  from,
+  to {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+}
+
+#title > h1:first-child {
+  text-shadow: 0.125em 0 0 #6171eb, -0.125em 0 0 #6171eb, 0 0.125em 0 #6171eb,
+    0 -0.125em 0 #6171eb, 0.125em 0.125em 0 #6171eb, -0.125em -0.125em 0 #6171eb,
+    0.125em -0.125em 0 #6171eb, -0.125em 0.125em 0 #6171eb, 0 0.125em 0 #6171eb,
+    -0.125em 0.125em 0 #6171eb, 0.125em 0.125em 0 #6171eb;
+}
+
+#title .sub h1 {
+  display: block;
+  position: relative;
+  /* opacity: 0; */
+  font-size: 20px;
+}
+
+#title .sub h1:nth-child(1)::before {
+  content: '내가 생각한 숫자 맞혀봐!';
+}
+
+#title .sub h1::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-shadow: 0 0 0 currentColor;
+  opacity: 0.25;
+  z-index: -1;
+}
+
+#title small {
+  font-size: 0.8rem;
+  opacity: 0;
+  position: absolute;
+  bottom: calc(10vw * (3 / 4));
+}
+
+#title.show .sub h1:nth-child(1) {
+  animation: fade-in 0.5s cubic-bezier(0, 0, 0, 1) forwards,
+    slide-in-up 0.5s cubic-bezier(0, 0, 0, 1) forwards;
+}
+
+#title.show .sub h1::before {
+  animation: subtitle 0.5s 0.8s cubic-bezier(0, 0, 0, 1) forwards;
+}
+
+.result {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+
+  .result_box {
+    width: 100px;
+    height: 100px;
+    padding: 0.5rem;
+    background-color: #6171eb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  .result_box > span {
+    animation: gelatine 1.5s infinite;
+    &:nth-child(1) {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+  }
+
+  .result_box > span:nth-child(1) {
+    animation: none;
+  }
+
+  .result_box > span:nth-child(2) {
+    animation: gelatine 1.5s infinite;
+  }
+
+  .line {
+    position: relative;
+    z-index: -5;
+    top: -5.5rem;
+    width: 100vw;
+    height: 5px;
+    background-color: #6171eb;
+  }
+}
+
+button {
+  background-color: #6171eb;
+  min-width: 50px;
+  height: 40px;
+
+  border: none;
+
+  font-family: 'Galmuri9';
+  font-weight: 800;
+  color: #fafafa;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #fafafa;
+    color: #6171eb;
+    border: 5px solid #6171eb;
+  }
+}
+
+button.check_button:disabled {
+  opacity: 0.5;
+
+  &:hover {
+    cursor: not-allowed;
+    background-color: #6171eb;
+    color: #fafafa;
+    border: none;
+  }
+}
+
+button.retry_button {
+  width: 90px;
+  display: none;
+}
+
+input {
+  width: 80px;
+  height: 50px;
+  border: 5px solid #6171eb;
+  font-family: 'Galmuri9';
+
+  padding: 0.4rem;
+  text-align: center;
+
+  font-size: 20px;
+
+  &::placeholder {
+    text-align: center;
+    font-weight: 800;
+  }
+
+  &:focus::placeholder {
+    color: transparent;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.result_message {
+  margin-bottom: 2rem;
+  display: none;
+}
+
+.input {
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  input {
+    margin-bottom: 2rem;
+  }
+  margin-bottom: 2rem;
+}
+
+.score {
+  text-align: center;
+
+  .left_chance {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    background-color: #74ebd5;
+    background-image: linear-gradient(
+      180deg,
+      #74ebd5 0%,
+      #9face6 50%,
+      #ebd5df 100%
+    );
+  }
+  #title > h1:first-child {
+    color: #181818;
+    text-shadow: 0.125em 0 0 yellow, -0.125em 0 0 yellow, 0 0.125em 0 yellow,
+      0 -0.125em 0 yellow, 0.125em 0.125em 0 yellow, -0.125em -0.125em 0 yellow,
+      0.125em -0.125em 0 yellow, -0.125em 0.125em 0 yellow, 0 0.125em 0 yellow,
+      -0.125em 0.125em 0 yellow, 0.125em 0.125em 0 yellow;
+  }
+
+  .result {
+    .result_box {
+      background-color: yellow;
+      color: #181818;
+    }
+
+    .line {
+      background-color: yellow;
+    }
+  }
+
+  button {
+    background-color: yellow;
+
+    color: #181818;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #fafafa;
+      color: #181818;
+      border: 5px solid yellow;
+    }
+  }
+
+  input {
+    border: 5px solid yellow;
+  }
+
+  button.check_button:disabled {
+    &:hover {
+      background-color: yellow;
+      color: #181818;
+    }
+  }
+}
+
+.window_size_alert {
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  #title > h1:first-child {
+    font-size: 1.6rem;
+  }
+
+  #title .sub h1 {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (min-width: 200px) and (max-width: 400px) {
+  body {
+    background-color: #dc3545;
+    color: #fafafa;
+    background-size: 0;
+    height: 100vh;
+  }
+
+  main {
+    display: none;
+  }
+
+  .window_size_alert {
+    display: block;
+    text-align: center;
+
+    h1 {
+      line-height: 2.4rem;
+      font-size: 2vh;
+    }
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 199px) {
+  body {
+    background-color: #dc3545;
+    color: #fafafa;
+    background-size: 0;
+    height: 100vh;
+  }
+
+  main {
+    display: none;
+  }
+
+  .window_size_alert {
+    display: block;
+  }
+
+  .window_size_alert h1 {
+    display: block;
+    line-height: 2rem;
+    font-size: 12px;
+    text-align: center;
+  }
+}
