@@ -1,8 +1,10 @@
-### 숫자 맞추기 게임 Guess the Number
+### 숫자 맞히기 게임 Guess the Number
 
 - 남녀노소 즐길 수 있는 랜덤 숫자 맞히기!!
 
 #### 미리보기
+
+https://luxury-arithmetic-cd2a79.netlify.app
 
 #### 구현 기능
 

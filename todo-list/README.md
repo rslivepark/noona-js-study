@@ -4,8 +4,10 @@
 
 #### 미리보기
 
+https://cosmic-brigadeiros-4887c7.netlify.app
+
 #### 구현 기능
 
-- 할 일을 추가, 수정, 삭제 할 수 있음
-- 할 일 정보를 localstorage에 저장할 수 있음
+- 할 일 추가, 수정, 삭제 기능
+- 할 일 정보 localstorage에 저장
 - 반응형 UI
