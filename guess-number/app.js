@@ -10,8 +10,11 @@ const leftChanceDisplay = document.querySelector('.left_chance');
 const resultBox = document.querySelector('.result_box');
 const scoreDisplay = document.querySelector('.score');
 
-let chance = 5;
+let chance = 3;
 let userInputArray = [];
+
+// 정답표시
+resultBox.innerHTML = `<span>정답</span><span class='answer'>${randomNumber}</span>`;
 
 // 남은 기회 표시 초기화
 leftChanceDisplay.innerText = chance;
