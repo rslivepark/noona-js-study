@@ -31,7 +31,7 @@ const gameReset = () => {
   randomNumber = Math.floor(Math.random() * 100 + 1);
   console.log(randomNumber);
 
-  chance = 5;
+  chance = 3;
   userInputArray = [];
   checkButton.disabled = false;
   userInput.value = '';
