@@ -13,7 +13,6 @@ const scoreDisplay = document.querySelector('.score');
 let chance = 3;
 let userInputArray = [];
 
-// 정답표시
 resultBox.innerHTML = `<span>정답</span><span class='answer'>${randomNumber}</span>`;
 
 // 남은 기회 표시 초기화
@@ -39,12 +38,14 @@ const gameReset = () => {
   leftChanceDisplay.innerText = chance;
   resultMessage.style.display = 'none';
   resultMessage.style.color = '#fafafa';
-  resultBox.innerHTML = `<span>정답</span><span class='answer'>?</span>`;
+  resultBox.innerHTML = `<span>정답</span><span class='answer'>${randomNumber}</span>`;
   scoreDisplay.style.display = 'block';
 };
 
 // 기회 차감 및 체크 함수
 const checkGuess = (userNumber) => {
+  resultBox.innerHTML = `<span>정답</span><span class='answer'>${randomNumber}</span>`;
+
   if (randomNumber === userNumber) {
     showMessage('축하합니다! 🎉🎉', '#dc3545');
     resultBox.innerHTML = `<span>정답</span><span class='answer'>${randomNumber}</span>`;
