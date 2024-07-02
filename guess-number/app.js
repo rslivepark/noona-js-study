@@ -77,12 +77,14 @@ form.addEventListener('submit', (e) => {
   // 중복 입력 확인
   if (userInputArray.includes(userNumber)) {
     alert('이미 입력한 숫자입니다!');
+    userInput.value = '';
     return;
   }
 
   // 입력 숫자 검증
   if (userNumber < 1 || userNumber > 100) {
     alert('1~100사이 숫자를 입력해주세요!');
+    userInput.value = '';
     return;
   }
 
