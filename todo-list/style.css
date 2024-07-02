@@ -65,6 +65,7 @@ main {
   align-items: center;
   justify-content: center;
   padding-bottom: 1rem;
+  height: 100vh;
 }
 
 main h1 {
@@ -272,4 +273,16 @@ main h1 {
       text-wrap: warp;
     }
   }
+}
+
+#State {
+  cursor: pointer;
+}
+.state_active {
+  transition: transform 0.5s;
+  color: #fafafa;
+}
+
+.state_active:hover {
+  transform: scale(1.2);
 }
