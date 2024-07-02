@@ -3,6 +3,10 @@ const input = document.querySelector('form input');
 const button = document.querySelector('form button');
 const listItem = document.querySelector('.list_item');
 
+const stateAll = document.querySelector('.state_all');
+const stateDone = document.querySelector('.state_done');
+const stateLeft = document.querySelector('.state_left');
+
 const totalCountSpan = document.querySelector('.all_text');
 const completedCountSpan = document.querySelector('.done_text');
 const incompleteCountSpan = document.querySelector('.left_text');
@@ -12,7 +16,7 @@ const allDeleteButton = document.querySelector('.all_delete');
 const ul = document.createElement('ul');
 ul.classList.add('todo_ul');
 
-const createTodoItem = (todo, id) => {
+const createTodoItem = (todo, id, completed = false) => {
   const li = document.createElement('li');
   li.classList.add('todo_li');
   li.setAttribute('data-id', id);
@@ -27,12 +31,19 @@ const createTodoItem = (todo, id) => {
                         ><i class="fa-solid fa-xmark"></i
                       ></span>
                     </div>`;
+  if (completed) {
+    const todoText = li.querySelector('.todo_text');
+    const icon = li.querySelector('.check_icon i');
+    todoText.style.textDecoration = 'line-through';
+    todoText.style.opacity = '0.5';
+    icon.style.color = 'yellow';
+  }
   updateCounters();
 };
 
-const saveToLocalStorage = (todo, id) => {
+const saveToLocalStorage = (todo, id, completed = false) => {
   const todos = JSON.parse(localStorage.getItem('todos')) || [];
-  todos.push({ id, todo, completed: false });
+  todos.push({ id, todo, completed });
   localStorage.setItem('todos', JSON.stringify(todos));
 };
 
@@ -128,15 +139,7 @@ const updateTodoText = (id, newText) => {
 const loadTodosFromLocalStorage = () => {
   const todos = JSON.parse(localStorage.getItem('todos')) || [];
   todos.forEach(({ id, todo, completed }) => {
-    createTodoItem(todo, id);
-    const li = document.querySelector(`.todo_li[data-id="${id}"]`);
-    if (completed) {
-      const todoText = li.querySelector('.todo_text');
-      const icon = li.querySelector('.check_icon i');
-      todoText.style.textDecoration = 'line-through';
-      todoText.style.opacity = '0.5';
-      icon.style.color = 'yellow';
-    }
+    createTodoItem(todo, id, completed);
   });
   if (todos.length > 0) {
     createAllDeleteButton();
@@ -145,6 +148,41 @@ const loadTodosFromLocalStorage = () => {
 
 const createAllDeleteButton = () => {
   document.querySelector('.all_delete').style.display = 'flex';
+};
+
+const filterTodos = (filter) => {
+  const todos = document.querySelectorAll('.todo_li');
+  todos.forEach((todo) => {
+    const todoText = todo.querySelector('.todo_text');
+    const isCompleted = todoText.style.textDecoration === 'line-through';
+
+    switch (filter) {
+      case 'all':
+        todo.style.display = 'flex';
+        break;
+      case 'completed':
+        if (isCompleted) {
+          todo.style.display = 'flex';
+        } else {
+          todo.style.display = 'none';
+        }
+        break;
+      case 'incomplete':
+        if (!isCompleted) {
+          todo.style.display = 'flex';
+        } else {
+          todo.style.display = 'none';
+        }
+        break;
+    }
+  });
+};
+
+const setActiveState = (activeSpan) => {
+  stateAll.classList.remove('state_active');
+  stateDone.classList.remove('state_active');
+  stateLeft.classList.remove('state_active');
+  activeSpan.classList.add('state_active');
 };
 
 form.addEventListener('submit', (e) => {
@@ -195,6 +233,19 @@ allDeleteButton.addEventListener('click', (e) => {
   document.querySelector('.all_delete').style.display = 'none';
 });
 
-document.addEventListener('DOMContentLoaded', loadTodosFromLocalStorage);
+stateAll.addEventListener('click', () => {
+  filterTodos('all');
+  setActiveState(stateAll);
+});
+
+stateDone.addEventListener('click', () => {
+  filterTodos('completed');
+  setActiveState(stateDone);
+});
+
+stateLeft.addEventListener('click', () => {
+  filterTodos('incomplete');
+  setActiveState(stateLeft);
+});
 
 updateCounters();
