@@ -16,6 +16,8 @@ const allDeleteButton = document.querySelector('.all_delete');
 const ul = document.createElement('ul');
 ul.classList.add('todo_ul');
 
+let currentFilter = 'all';
+
 const createTodoItem = (todo, id, completed = false) => {
   const li = document.createElement('li');
   li.classList.add('todo_li');
@@ -116,6 +118,18 @@ const updateCounters = () => {
   totalCountSpan.innerText = total;
   completedCountSpan.innerText = completed;
   incompleteCountSpan.innerText = incomplete;
+
+  // 전체 삭제 버튼 표시 여부 업데이트
+  updateAllDeleteButton();
+};
+
+const updateAllDeleteButton = () => {
+  const todos = document.querySelectorAll('.todo_li');
+  if (todos.length > 0) {
+    allDeleteButton.style.display = 'flex';
+  } else {
+    allDeleteButton.style.display = 'none';
+  }
 };
 
 const updateTodoCompletionStatus = (id, completed) => {
@@ -141,16 +155,11 @@ const loadTodosFromLocalStorage = () => {
   todos.forEach(({ id, todo, completed }) => {
     createTodoItem(todo, id, completed);
   });
-  if (todos.length > 0) {
-    createAllDeleteButton();
-  }
-};
-
-const createAllDeleteButton = () => {
-  document.querySelector('.all_delete').style.display = 'flex';
+  updateAllDeleteButton(); // 전체 삭제 버튼 상태를 업데이트합니다.
 };
 
 const filterTodos = (filter) => {
+  currentFilter = filter;
   const todos = document.querySelectorAll('.todo_li');
   todos.forEach((todo) => {
     const todoText = todo.querySelector('.todo_text');
@@ -183,6 +192,7 @@ const setActiveState = (activeSpan) => {
   stateDone.classList.remove('state_active');
   stateLeft.classList.remove('state_active');
   activeSpan.classList.add('state_active');
+  updateAllDeleteButton(); // 필터 상태를 변경할 때마다 전체 삭제 버튼을 업데이트합니다.
 };
 
 form.addEventListener('submit', (e) => {
@@ -191,7 +201,7 @@ form.addEventListener('submit', (e) => {
   const id = new Date().getTime().toString();
   createTodoItem(todo, id);
   saveToLocalStorage(todo, id);
-  createAllDeleteButton();
+  updateAllDeleteButton();
   input.value = '';
 });
 
@@ -203,11 +213,6 @@ listItem.addEventListener('click', (e) => {
       li.remove();
       removeFromLocalStorage(id);
       updateCounters();
-      // 전체 삭제 버튼 숨기기
-      const todos = JSON.parse(localStorage.getItem('todos')) || [];
-      if (todos.length === 0) {
-        document.querySelector('.all_delete').style.display = 'none';
-      }
     }
   }
 
@@ -227,10 +232,36 @@ listItem.addEventListener('click', (e) => {
 });
 
 allDeleteButton.addEventListener('click', (e) => {
-  ul.innerHTML = '';
-  localStorage.removeItem('todos');
+  const todos = document.querySelectorAll('.todo_li');
+  todos.forEach((todo) => {
+    const todoText = todo.querySelector('.todo_text');
+    const isCompleted = todoText.style.textDecoration === 'line-through';
+    let shouldDelete = false;
+
+    switch (currentFilter) {
+      case 'all':
+        shouldDelete = true;
+        break;
+      case 'completed':
+        if (isCompleted) {
+          shouldDelete = true;
+        }
+        break;
+      case 'incomplete':
+        if (!isCompleted) {
+          shouldDelete = true;
+        }
+        break;
+    }
+
+    if (shouldDelete) {
+      const id = todo.getAttribute('data-id');
+      todo.remove();
+      removeFromLocalStorage(id);
+    }
+  });
+
   updateCounters();
-  document.querySelector('.all_delete').style.display = 'none';
 });
 
 stateAll.addEventListener('click', () => {
@@ -249,3 +280,4 @@ stateLeft.addEventListener('click', () => {
 });
 
 updateCounters();
+loadTodosFromLocalStorage();
