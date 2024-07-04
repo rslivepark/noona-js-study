@@ -77,6 +77,7 @@ const toggleCheckTodoItem = (li) => {
   }
 
   updateCounters();
+  filterTodos(currentFilter); // 상태 변경 후 필터 적용
 };
 
 const editTodoItem = (li) => {
@@ -119,13 +120,15 @@ const updateCounters = () => {
   completedCountSpan.innerText = completed;
   incompleteCountSpan.innerText = incomplete;
 
-  // 전체 삭제 버튼 표시 여부 업데이트
   updateAllDeleteButton();
 };
 
 const updateAllDeleteButton = () => {
   const todos = document.querySelectorAll('.todo_li');
-  if (todos.length > 0) {
+  const visibleTodos = Array.from(todos).filter(
+    (todo) => todo.style.display !== 'none'
+  );
+  if (visibleTodos.length > 0) {
     allDeleteButton.style.display = 'flex';
   } else {
     allDeleteButton.style.display = 'none';
@@ -155,7 +158,9 @@ const loadTodosFromLocalStorage = () => {
   todos.forEach(({ id, todo, completed }) => {
     createTodoItem(todo, id, completed);
   });
-  updateAllDeleteButton(); // 전체 삭제 버튼 상태를 업데이트합니다.
+  updateAllDeleteButton();
+  filterTodos('all');
+  setActiveState(stateAll);
 };
 
 const filterTodos = (filter) => {
@@ -185,6 +190,7 @@ const filterTodos = (filter) => {
         break;
     }
   });
+  updateAllDeleteButton(); // 필터 적용 후 버튼 상태 업데이트
 };
 
 const setActiveState = (activeSpan) => {
@@ -192,17 +198,19 @@ const setActiveState = (activeSpan) => {
   stateDone.classList.remove('state_active');
   stateLeft.classList.remove('state_active');
   activeSpan.classList.add('state_active');
-  updateAllDeleteButton(); // 필터 상태를 변경할 때마다 전체 삭제 버튼을 업데이트합니다.
+  updateAllDeleteButton();
 };
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  const todo = input.value;
+  const todo = input.value.trim();
+  if (todo === '') return alert('할 일을 입력해주세요.');
   const id = new Date().getTime().toString();
   createTodoItem(todo, id);
   saveToLocalStorage(todo, id);
   updateAllDeleteButton();
   input.value = '';
+  filterTodos(currentFilter); // 새로운 항목 추가 후 필터 적용
 });
 
 listItem.addEventListener('click', (e) => {
@@ -213,6 +221,7 @@ listItem.addEventListener('click', (e) => {
       li.remove();
       removeFromLocalStorage(id);
       updateCounters();
+      filterTodos(currentFilter); // 항목 삭제 후 필터 적용
     }
   }
 
@@ -220,6 +229,7 @@ listItem.addEventListener('click', (e) => {
     const li = e.target.closest('.todo_li');
     if (li) {
       toggleCheckTodoItem(li);
+      filterTodos(currentFilter); // 상태 변경 후 필터 적용
     }
   }
 
@@ -262,6 +272,7 @@ allDeleteButton.addEventListener('click', (e) => {
   });
 
   updateCounters();
+  filterTodos(currentFilter); // 전체 삭제 후 필터 적용
 });
 
 stateAll.addEventListener('click', () => {
