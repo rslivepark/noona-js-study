@@ -17,9 +17,9 @@
 - 나의 Live server 주소는 IPv4 주소로 사용되게 설정되어 있었음
 - VSCode 설정에서 Use local IP 체크 해제 후 다시 실행하니 정상적으로 status 200으로 API 통신 가능하게 되었음
 
-  <img src='img.md/issue_01.png'>  
-  <img src='img.md/issue_02.png'>  
-  <img src='img.md/issue_03.png'>
+  <img src='img.md/issue_01.png' height="200x", width="auto">  
+  <img src='img.md/issue_02.png' height="200x", width="auto">  
+  <img src='img.md/issue_03.png' height="200x", width="auto">
 
 #### 2. api 호출하여 이미지 불러올 때 ','표시됨
 
