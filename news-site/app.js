@@ -4,7 +4,7 @@ const menus = document.querySelectorAll('.menus button');
 const searchInput = document.getElementById('search-input');
 
 let url = new URL(
-  `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines`
+  `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?page=1&pageSize=20`
 );
 
 // 카테고리 버튼 클릭 이벤트
