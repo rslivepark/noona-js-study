@@ -6,4 +6,5 @@
 - 투두리스트  
   https://cosmic-brigadeiros-4887c7.netlify.app
 
-- 뉴스 사이트  
+- 뉴스 사이트
+  https://gorgeous-hamster-de6bab.netlify.app  
