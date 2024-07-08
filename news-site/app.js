@@ -3,8 +3,10 @@ let newsList = [];
 const menus = document.querySelectorAll('.menus button');
 const searchInput = document.getElementById('search-input');
 
+// https://gorgeous-hamster-de6bab.netlify.app
+
 let url = new URL(
-  `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines`
+  `https://gorgeous-hamster-de6bab.netlify.app/top-headlines`
 );
 
 // 카테고리 버튼 클릭 이벤트
@@ -50,9 +52,7 @@ const getNews = async () => {
 
 // 최신 뉴스 가져오기
 const getLatestNews = async () => {
-  url = new URL(
-    `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines`
-  );
+  url = new URL(`https://gorgeous-hamster-de6bab.netlify.app/top-headlines`);
   getNews();
 };
 
@@ -161,7 +161,7 @@ window.addEventListener('resize', toggleMenuDisplay);
 const getNewsByCategory = async (event) => {
   const category = event.target.textContent.toLowerCase();
   url = new URL(
-    `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?category=${category}`
+    `https://gorgeous-hamster-de6bab.netlify.app/top-headlines?category=${category}`
   );
   isCategoryView = true;
   await getNews();
@@ -172,7 +172,7 @@ const getNewsByCategory = async (event) => {
 const getNewsByKeyword = async () => {
   const keyword = searchInput.value;
   url = new URL(
-    `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?q=${keyword}`
+    `https://gorgeous-hamster-de6bab.netlify.app/top-headlines?q=${keyword}`
   );
 
   if (keyword === '') {
