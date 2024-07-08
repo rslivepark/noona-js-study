@@ -16,10 +16,6 @@
 - News API Develoer Plan인 경우 localhost에서만 가능해서 생긴 이슈
 - 나의 Live server 주소는 IPv4 주소로 사용되게 설정되어 있었음
 - VSCode 설정에서 Use local IP 체크 해제 후 다시 실행하니 정상적으로 status 200으로 API 통신 가능하게 되었음
-  
+
   <img src='img.md/issue_01.png' width="auto" height="200" align="center">  
-  <img src='img.md/issue_03.png' width="auto" height="200" align="center"> 
-
-#### 2. api 호출하여 이미지 불러올 때 ','표시됨
-
--> join()이용
+  <img src='img.md/issue_03.png' width="auto" height="200" align="center">

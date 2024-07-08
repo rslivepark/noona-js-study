@@ -28,25 +28,42 @@
       referrerpolicy="no-referrer"
     />
   </head>
-  <body>
+  <body">
     <section class="container">
+      <!-- 사이드 버튼 -->
+      <div class="modeToggle" title="다크모드">
+        <button id="modeToggle"><i class="fa-solid fa-moon"></i></button>
+      </div>
+      <div class="top" title="화면 상단">
+        <button><i class="fa-solid fa-angles-up"></i></button>
+      </div>
+      <div class="bottom" title="화면 하단">
+        <button><i class="fa-solid fa-angles-down"></i></button>
+      </div>
       <!-- 헤드라인 섹션 -->
-      <section>
+      <section id="head-line">
         <div class="head-line">
-          <a href="index.html">News Site</a>
+          <a href="index.html" title="메인화면으로 가기">News Site</a>
         </div>
+
         <!-- 검색 폼 -->
         <div class="search">
           <form id="search-form">
-            <input
-              id="search-input"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button type="submit">검색</button>
+            <div class="input-group mb-3 col-12 col-sm-12 col-md-6 col-lg-6">
+              <input
+                type="text"
+                class="search-input"
+                id="search-input"
+                placeholder="Search"
+                aria-describedby="basic-addon2"
+              />
+              <button class="search-button" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
           </form>
         </div>
+
         <!-- 메뉴 -->
         <div class="menus">
           <button>business</button>
@@ -56,6 +73,12 @@
           <button>science</button>
           <button>sports</button>
           <button>technology</button>
+        </div>
+
+        <div class="menu-bars">
+          <button class="bars-button" type="button">
+            <i class="fa-solid fa-bars"></i>
+          </button>
         </div>
       </section>
 
