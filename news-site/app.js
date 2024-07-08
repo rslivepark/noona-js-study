@@ -1,11 +1,10 @@
 // API 키와 URL 설정
-const API_KEY = `8627594262d841c594e144954f79be6f`;
 let newsList = [];
 const menus = document.querySelectorAll('.menus button');
 const searchInput = document.getElementById('search-input');
 
 let url = new URL(
-  `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`
+  `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines`
 );
 
 // 카테고리 버튼 클릭 이벤트
@@ -52,7 +51,7 @@ const getNews = async () => {
 // 최신 뉴스 가져오기
 const getLatestNews = async () => {
   url = new URL(
-    `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`
+    `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines`
   );
   getNews();
 };
@@ -136,8 +135,6 @@ const renderError = (errorMessage) => {
   document.getElementById('news-board').innerHTML = errorHTML;
 };
 
-// 카테고리별 뉴스 가져오기
-
 let isCategoryView = false;
 
 const toggleMenuDisplay = () => {
@@ -164,7 +161,7 @@ window.addEventListener('resize', toggleMenuDisplay);
 const getNewsByCategory = async (event) => {
   const category = event.target.textContent.toLowerCase();
   url = new URL(
-    `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`
+    `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?category=${category}`
   );
   isCategoryView = true;
   await getNews();
@@ -175,11 +172,12 @@ const getNewsByCategory = async (event) => {
 const getNewsByKeyword = async () => {
   const keyword = searchInput.value;
   url = new URL(
-    `https://newsapi.org/v2/top-headlines?q=${keyword}&country=us&apiKey=${API_KEY}`
+    `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?q=${keyword}`
   );
 
   if (keyword === '') {
     alert('검색어를 입력해주세요');
+    searchInput.focus();
     searchInput.value = '';
   } else {
     isCategoryView = false;
