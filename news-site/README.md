@@ -4,6 +4,8 @@
 
 ### 미리보기
 
+- https://gorgeous-hamster-de6bab.netlify.app
+
 ### 구현기능
 
 - News API 호출
