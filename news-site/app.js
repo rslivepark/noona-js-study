@@ -2,12 +2,9 @@
 let newsList = [];
 const menus = document.querySelectorAll('.menus button');
 const searchInput = document.getElementById('search-input');
+const inputClear = document.querySelector('.input-group > span');
 
-// https://gorgeous-hamster-de6bab.netlify.app
-
-let url = new URL(
-  `https://gorgeous-hamster-de6bab.netlify.app/top-headlines`
-);
+let url = new URL(`https://gorgeous-hamster-de6bab.netlify.app/top-headlines`);
 
 // 카테고리 버튼 클릭 이벤트
 menus.forEach((menu) =>
@@ -313,7 +310,7 @@ document.querySelector('.bottom').addEventListener('click', scrollToBottom);
 // 창 크기 감지
 const originalContent = document.body.querySelector('section.container');
 
-function checkWindowSize() {
+const checkWindowSize = () => {
   if (window.innerWidth < 400) {
     if (!document.querySelector('.window-alert')) {
       const alertElement = document.createElement('h2');
@@ -329,7 +326,7 @@ function checkWindowSize() {
       originalContent.style.display = 'block';
     }
   }
-}
+};
 
 window.addEventListener('resize', checkWindowSize);
 
@@ -363,3 +360,29 @@ const darkMode = localStorage.getItem('darkMode');
 if (darkMode === 'enabled') {
   enableDarkMode();
 }
+
+// input clear
+
+document.addEventListener('DOMContentLoaded', function () {
+  const inputField = document.getElementById('search-input');
+  const clearButton = document.getElementById('clear-button');
+
+  clearButton.classList.add('hidden');
+
+  inputField.addEventListener('input', function () {
+    if (inputField.value.length > 0) {
+      clearButton.classList.remove('hidden');
+      clearButton.classList.add('visible');
+    } else {
+      clearButton.classList.remove('visible');
+      clearButton.classList.add('hidden');
+    }
+  });
+
+  clearButton.addEventListener('click', function () {
+    inputField.value = '';
+    clearButton.classList.remove('visible');
+    clearButton.classList.add('hidden');
+    inputField.focus();
+  });
+});
