@@ -444,6 +444,7 @@ body.dark {
     font-weight: 800;
   }
 
+  .search-input,
   .input-group > span i {
     color: #fafafa;
   }
