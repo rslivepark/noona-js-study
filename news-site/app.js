@@ -39,9 +39,9 @@ const getNews = async () => {
 };
 
 // 최신 뉴스 가져오기
-const getLatestNews = () => {
+const getLatestNews = async () => {
   url = new URL(BASE_URL);
-  getNews();
+  await getNews();
 };
 
 // 뉴스 렌더링
