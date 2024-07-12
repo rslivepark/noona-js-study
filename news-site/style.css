@@ -398,7 +398,6 @@ body.dark {
     border-bottom: 1px solid #fafafa;
     border-left: 1px solid #fafafa;
     border-right: none;
-    border-radius: 5px 0 5px 5px;
     padding: 0.5rem;
 
     &::placeholder {
