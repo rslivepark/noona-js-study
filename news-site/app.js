@@ -159,6 +159,7 @@ const getNewsByCategory = async (event) => {
   const category = event.target.textContent.toLowerCase();
   url = new URL(`${BASE_URL}?category=${category}`);
   isCategoryView = true;
+    page = 1;
   await getNews();
   toggleSearchAndMenu(true);
 };
